@@ -60,6 +60,7 @@
       <DependentUpon>AdornerDragDropExample.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SimpleCircleAdorner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
