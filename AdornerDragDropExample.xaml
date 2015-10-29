@@ -52,13 +52,13 @@
                                       Background="DarkRed">
             <starrySky:CanvasItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid Background="Transparent">
+                    <Grid>
                         <Ellipse Width="100"
                                  Height="100"
                                  Fill="Black"
                                  Stroke="AliceBlue"
                                  StrokeThickness="2"
-                                 IsHitTestVisible="False" />
+                                 IsHitTestVisible="True" />
                         <TextBlock Foreground="White"
                                    FontSize="12"
                                    Text="{Binding Name}"

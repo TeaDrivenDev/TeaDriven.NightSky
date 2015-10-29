@@ -168,29 +168,29 @@ namespace TeaDriven.StarrySky
             MessageBox.Show("Argh");
         }
 
-        // https://snipt.net/raw/9444c2cebe488c6f1bb5730caf6b5a1f/?nice
-        public static Canvas FindItemsPanel(Visual visual)
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(visual); i++)
-            {
-                Visual child = VisualTreeHelper.GetChild(visual, i) as Visual;
-                if (child != null)
-                {
-                    if (child is object && VisualTreeHelper.GetParent(child) is ItemsPresenter)
-                    {
-                        object temp = child;
-                        return (Canvas)temp;
-                    }
-                    object panel = FindItemsPanel(child);
-                    if (panel != null)
-                    {
-                        object temp = panel;
-                        return (Canvas)temp; // return the panel up the call stack
-                    }
-                }
-            }
-            return default(Canvas);
-        }
+        //// https://snipt.net/raw/9444c2cebe488c6f1bb5730caf6b5a1f/?nice
+        //public static Canvas FindItemsPanel(Visual visual)
+        //{
+        //    for (int i = 0; i < VisualTreeHelper.GetChildrenCount(visual); i++)
+        //    {
+        //        Visual child = VisualTreeHelper.GetChild(visual, i) as Visual;
+        //        if (child != null)
+        //        {
+        //            if (child is object && VisualTreeHelper.GetParent(child) is ItemsPresenter)
+        //            {
+        //                object temp = child;
+        //                return (Canvas)temp;
+        //            }
+        //            object panel = FindItemsPanel(child);
+        //            if (panel != null)
+        //            {
+        //                object temp = panel;
+        //                return (Canvas)temp; // return the panel up the call stack
+        //            }
+        //        }
+        //    }
+        //    return default(Canvas);
+        //}
     }
 
     public class Thing

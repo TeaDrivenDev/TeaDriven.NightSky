@@ -10,7 +10,7 @@
         <ItemsPanelTemplate>
             <Canvas VerticalAlignment="Stretch"
                     IsHitTestVisible="True"
-                    MouseLeftButtonDown="MyCanvas_PreviewMouseLeftButtonDown"
+                    MouseLeftButtonDown="ItemsPanel_MouseLeftButtonDown"
                     MouseMove="ItemsPanel_MouseMove"
                     MouseLeftButtonUp="ItemsPanel_MouseLeftButtonUp" />
         </ItemsPanelTemplate>
