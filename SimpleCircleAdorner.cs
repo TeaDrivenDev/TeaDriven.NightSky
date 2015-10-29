@@ -5,7 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace SDKSample
+namespace TeaDriven.StarrySky
 {
     public class SimpleCircleAdorner : Adorner
     {

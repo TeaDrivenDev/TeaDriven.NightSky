@@ -1,13 +1,14 @@
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="SDKSample.AdornerDragDropExample"
+        xmlns:starrySky="clr-namespace:TeaDriven.StarrySky"
+        x:Class="TeaDriven.StarrySky.AdornerDragDropExample"
         Title="Adorner Drag and Drop Example"
         Loaded="OnPageLoad"
-        PreviewKeyDown="window1_PreviewKeyDown"
         Width="1200"
         Height="700">
-    <StackPanel Name="myStackPanel">
-        <Border Background="#99FFFFFF"
+    <StackPanel Name="myStackPanel"
+                Background="HotPink">
+        <!--<Border Background="#99FFFFFF"
                 BorderBrush="#CCCCFF"
                 BorderThickness="2"
                 Padding="20">
@@ -19,7 +20,7 @@
         is applied to an object as you drag it. Drag and drop the box and
         TextBox below.
             </TextBlock>
-        </Border>
+        </Border>-->
 
         <!--<Canvas Name="MyCanvas"
                 MouseLeftButtonDown="MyCanvas_PreviewMouseLeftButtonDown"
@@ -45,7 +46,35 @@
             </Grid>
         </Canvas>-->
 
-        <ItemsControl ItemsSource="{Binding MainItems}"
+        <starrySky:CanvasItemsControl ItemsSource="{Binding MainItems}"
+                                      x:Name="StarrySky"
+                                      VerticalAlignment="Stretch"
+                                      Background="DarkRed">
+            <starrySky:CanvasItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="Transparent">
+                        <Ellipse Width="100"
+                                 Height="100"
+                                 Fill="Black"
+                                 Stroke="AliceBlue"
+                                 StrokeThickness="2"
+                                 IsHitTestVisible="False" />
+                        <TextBlock Foreground="White"
+                                   FontSize="12"
+                                   Text="{Binding Name}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False" />
+                        <Button Content="{Binding Name}"
+                                Click="Button_Click"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </starrySky:CanvasItemsControl.ItemTemplate>
+        </starrySky:CanvasItemsControl>
+
+        <!--<ItemsControl ItemsSource="{Binding MainItems}"
                       Name="ItemsControl"
                       VerticalAlignment="Stretch"
                       Background="DarkCyan">
@@ -92,6 +121,6 @@
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        </ItemsControl>-->
     </StackPanel>
 </Window>

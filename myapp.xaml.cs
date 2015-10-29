@@ -6,7 +6,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.IO;
 
-namespace SDKSample
+namespace TeaDriven.StarrySky
 {
 	/// <summary>
 	/// Interaction logic for app.xaml

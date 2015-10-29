@@ -39,6 +39,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>TeaDriven.StarrySky</RootNamespace>
+  </PropertyGroup>
   <!--Import the target file that contains all the common targets -->
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -50,8 +53,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CanvasItemsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CanvasItemsControl.xaml.cs">
+      <DependentUpon>CanvasItemsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyApp.xaml.cs">
       <DependentUpon>MyApp.xaml</DependentUpon>
       <SubType>Code</SubType>

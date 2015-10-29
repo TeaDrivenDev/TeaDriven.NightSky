@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace SDKSample
+namespace TeaDriven.StarrySky
 {
     #region Namespaces.
 
@@ -60,109 +60,108 @@ namespace SDKSample
             PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
-        private void window1_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == System.Windows.Input.Key.Escape && _isDragging)
-            {
-                DragFinished(true);
-            }
-        }
+        //private void window1_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        //{
+        //    if (e.Key == System.Windows.Input.Key.Escape && _isDragging)
+        //    {
+        //        DragFinished(true);
+        //    }
+        //}
 
-        private void MyCanvas_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (_isDown)
-            {
-                DragFinished(false);
-                e.Handled = true;
-            }
-        }
+        //private void MyCanvas_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        //{
+        //    if (_isDown)
+        //    {
+        //        DragFinished(false);
+        //        e.Handled = true;
+        //    }
+        //}
 
-        private void DragFinished(bool cancelled)
-        {
-            System.Windows.Input.Mouse.Capture(null);
-            if (_isDragging)
-            {
-                AdornerLayer.GetAdornerLayer(_adornerElement.AdornedElement).Remove(_adornerElement);
+        //private void DragFinished(bool cancelled)
+        //{
+        //    System.Windows.Input.Mouse.Capture(null);
+        //    if (_isDragging)
+        //    {
+        //        AdornerLayer.GetAdornerLayer(_adornerElement.AdornedElement).Remove(_adornerElement);
 
-                if (cancelled == false)
-                {
-                    Canvas.SetTop(_originalElement, _originalTop + _adornerElement.TopOffset);
-                    Canvas.SetLeft(_originalElement, _originalLeft + _adornerElement.LeftOffset);
-                }
-                _adornerElement = null;
-            }
-            _isDragging = false;
-            _isDown = false;
-        }
+        //        if (cancelled == false)
+        //        {
+        //            Canvas.SetTop(_originalElement, _originalTop + _adornerElement.TopOffset);
+        //            Canvas.SetLeft(_originalElement, _originalLeft + _adornerElement.LeftOffset);
+        //        }
+        //        _adornerElement = null;
+        //    }
+        //    _isDragging = false;
+        //    _isDown = false;
+        //}
 
-        private void MyCanvas_PreviewMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            if (_isDown)
-            {
-                if ((_isDragging == false) &&
-                    ((Math.Abs(e.GetPosition(ItemsPanel).X - _startPoint.X) >
-                      SystemParameters.MinimumHorizontalDragDistance) ||
-                     (Math.Abs(e.GetPosition(ItemsPanel).Y - _startPoint.Y) >
-                      SystemParameters.MinimumVerticalDragDistance)))
-                {
-                    DragStarted();
-                }
-                if (_isDragging)
-                {
-                    DragMoved();
-                }
-            }
-        }
+        //private void MyCanvas_PreviewMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        //{
+        //    if (_isDown)
+        //    {
+        //        if ((_isDragging == false) &&
+        //            ((Math.Abs(e.GetPosition(ItemsPanel).X - _startPoint.X) >
+        //              SystemParameters.MinimumHorizontalDragDistance) ||
+        //             (Math.Abs(e.GetPosition(ItemsPanel).Y - _startPoint.Y) >
+        //              SystemParameters.MinimumVerticalDragDistance)))
+        //        {
+        //            DragStarted();
+        //        }
+        //        if (_isDragging)
+        //        {
+        //            DragMoved();
+        //        }
+        //    }
+        //}
 
-        private void DragStarted()
-        {
-            _isDragging = true;
+        //private void DragStarted()
+        //{
+        //    _isDragging = true;
 
-            Vector offset =
-                VisualTreeHelper.GetOffset(_originalElement);
+        //    Vector offset = VisualTreeHelper.GetOffset(_originalElement);
 
-            _originalLeft = offset.X;
-            _originalTop = offset.Y;
+        //    _originalLeft = offset.X;
+        //    _originalTop = offset.Y;
 
-            _adornerElement = new SimpleCircleAdorner(_originalElement);
-            AdornerLayer layer = AdornerLayer.GetAdornerLayer(_originalElement);
-            layer.Add(_adornerElement);
-        }
+        //    _adornerElement = new SimpleCircleAdorner(_originalElement);
+        //    AdornerLayer layer = AdornerLayer.GetAdornerLayer(_originalElement);
+        //    layer.Add(_adornerElement);
+        //}
 
-        private void DragMoved()
-        {
-            Point CurrentPosition = System.Windows.Input.Mouse.GetPosition(ItemsPanel);
+        //private void DragMoved()
+        //{
+        //    Point CurrentPosition = System.Windows.Input.Mouse.GetPosition(ItemsPanel);
 
-            _adornerElement.LeftOffset = CurrentPosition.X - _startPoint.X;
-            _adornerElement.TopOffset = CurrentPosition.Y - _startPoint.Y;
-        }
+        //    _adornerElement.LeftOffset = CurrentPosition.X - _startPoint.X;
+        //    _adornerElement.TopOffset = CurrentPosition.Y - _startPoint.Y;
+        //}
 
-        private Canvas ItemsPanel
-        {
-            get { return FindItemsPanel(ItemsControl); }
-        }
+        //private Canvas ItemsPanel
+        //{
+        //    get { return FindItemsPanel(ItemsControl); }
+        //}
 
-        private void MyCanvas_PreviewMouseLeftButtonDown(
-            object sender,
-            System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (e.Source != ItemsPanel)
-            {
-                _isDown = true;
-                _startPoint = e.GetPosition(ItemsPanel);
-                _originalElement = VisualTreeHelper.GetParent(e.Source as UIElement) as UIElement;
-                ItemsPanel.CaptureMouse();
-                e.Handled = true;
-            }
-        }
+        //private void MyCanvas_PreviewMouseLeftButtonDown(
+        //    object sender,
+        //    System.Windows.Input.MouseButtonEventArgs e)
+        //{
+        //    if (e.Source != ItemsPanel)
+        //    {
+        //        _isDown = true;
+        //        _startPoint = e.GetPosition(ItemsPanel);
+        //        _originalElement = VisualTreeHelper.GetParent(e.Source as UIElement) as UIElement;
+        //        ItemsPanel.CaptureMouse();
+        //        e.Handled = true;
+        //    }
+        //}
 
-        private Point _startPoint;
-        private double _originalLeft;
-        private double _originalTop;
-        private bool _isDown;
-        private bool _isDragging;
-        private UIElement _originalElement;
-        private SimpleCircleAdorner _adornerElement;
+        //private Point _startPoint;
+        //private double _originalLeft;
+        //private double _originalTop;
+        //private bool _isDown;
+        //private bool _isDragging;
+        //private UIElement _originalElement;
+        //private SimpleCircleAdorner _adornerElement;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
