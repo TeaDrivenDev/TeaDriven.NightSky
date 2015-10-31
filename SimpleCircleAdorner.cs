@@ -7,29 +7,21 @@ using System.Windows.Shapes;
 
 namespace TeaDriven.StarrySky
 {
-    public class SimpleCircleAdorner : Adorner
+    public class SimpleCircleAdorner : DragAndDropAdornerBase
     {
         // Be sure to call the base class constructor.
         public SimpleCircleAdorner(UIElement adornedElement)
             : base(adornedElement)
         {
-            VisualBrush _brush = new VisualBrush(adornedElement);
-
-            _child = new Rectangle
-            {
-                Width = adornedElement.RenderSize.Width,
-                Height = adornedElement.RenderSize.Height
-            };
-
             DoubleAnimation animation = new DoubleAnimation(0.3, 1,
                 new Duration(TimeSpan.FromSeconds(1)))
             {
                 AutoReverse = true,
                 RepeatBehavior = System.Windows.Media.Animation.RepeatBehavior.Forever
             };
-            _brush.BeginAnimation(System.Windows.Media.Brush.OpacityProperty, animation);
+            adornedElementBrush.BeginAnimation(System.Windows.Media.Brush.OpacityProperty, animation);
 
-            _child.Fill = _brush;
+            child.Fill = adornedElementBrush;
         }
 
         // A common way to implement an adorner's rendering behavior is to override the OnRender
@@ -42,8 +34,7 @@ namespace TeaDriven.StarrySky
             Rect adornedElementRect = new Rect(this.AdornedElement.DesiredSize);
 
             // Some arbitrary drawing implements.
-            SolidColorBrush renderBrush = new SolidColorBrush(Colors.Green);
-            renderBrush.Opacity = 0.2;
+            SolidColorBrush renderBrush = new SolidColorBrush(Colors.Green) { Opacity = 0.2 };
             Pen renderPen = new Pen(new SolidColorBrush(Colors.Navy), 1.5);
             double renderRadius = 5.0;
 
@@ -54,31 +45,42 @@ namespace TeaDriven.StarrySky
             drawingContext.DrawEllipse(renderBrush, renderPen, adornedElementRect.BottomLeft, renderRadius, renderRadius);
             drawingContext.DrawEllipse(renderBrush, renderPen, adornedElementRect.BottomRight, renderRadius, renderRadius);
         }
+    }
 
-        protected override Size MeasureOverride(Size constraint)
+    public abstract class DragAndDropAdornerBase : Adorner
+    {
+        protected readonly VisualBrush adornedElementBrush;
+
+        // Be sure to call the base class constructor.
+        protected DragAndDropAdornerBase(UIElement adornedElement)
+            : base(adornedElement)
         {
-            _child.Measure(constraint);
-            return _child.DesiredSize;
+            adornedElementBrush = new VisualBrush(adornedElement);
+            child = new Rectangle
+            {
+                Width = adornedElement.RenderSize.Width,
+                Height = adornedElement.RenderSize.Height
+            };
         }
 
-        protected override Size ArrangeOverride(Size finalSize)
+        protected override sealed Size MeasureOverride(Size constraint)
         {
-            _child.Arrange(new Rect(finalSize));
+            child.Measure(constraint);
+            return child.DesiredSize;
+        }
+
+        protected override sealed Size ArrangeOverride(Size finalSize)
+        {
+            child.Arrange(new Rect(finalSize));
             return finalSize;
         }
 
-        protected override Visual GetVisualChild(int index)
+        protected override sealed Visual GetVisualChild(int index)
         {
-            return _child;
+            return child;
         }
 
-        protected override int VisualChildrenCount
-        {
-            get
-            {
-                return 1;
-            }
-        }
+        protected override sealed int VisualChildrenCount => 1;
 
         public double LeftOffset
         {
@@ -109,13 +111,10 @@ namespace TeaDriven.StarrySky
         private void UpdatePosition()
         {
             AdornerLayer adornerLayer = this.Parent as AdornerLayer;
-            if (adornerLayer != null)
-            {
-                adornerLayer.Update(AdornedElement);
-            }
+            adornerLayer?.Update(AdornedElement);
         }
 
-        public override GeneralTransform GetDesiredTransform(GeneralTransform transform)
+        public override sealed GeneralTransform GetDesiredTransform(GeneralTransform transform)
         {
             GeneralTransformGroup result = new GeneralTransformGroup();
             result.Children.Add(base.GetDesiredTransform(transform));
@@ -123,7 +122,7 @@ namespace TeaDriven.StarrySky
             return result;
         }
 
-        private Rectangle _child = null;
+        protected Rectangle child = null;
         private double _leftOffset = 0;
         private double _topOffset = 0;
     }
