@@ -19,7 +19,7 @@ namespace TeaDriven.StarrySky
         private bool mouseDragging;
 
         private UIElement originalElement;
-        private SimpleCircleAdorner adornerElement;
+        private DragAndDropAdornerBase adornerElement;
 
         #endregion Drag and drop state
 
@@ -118,10 +118,10 @@ namespace TeaDriven.StarrySky
 
         #region Public properties
 
-        public Func<UIElement, SimpleCircleAdorner> createAdorner =
-            (control) => new SimpleCircleAdorner(control);
+        public Func<UIElement, DragAndDropAdornerBase> createAdorner =
+            (control) => new InvisibleDragAndDropAdorner(control);
 
-        public Func<UIElement, SimpleCircleAdorner> CreateAdorner
+        public Func<UIElement, DragAndDropAdornerBase> CreateAdorner
         {
             get { return createAdorner; }
             set { createAdorner = value; }

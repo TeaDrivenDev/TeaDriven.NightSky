@@ -20,8 +20,6 @@ namespace TeaDriven.StarrySky
                 RepeatBehavior = System.Windows.Media.Animation.RepeatBehavior.Forever
             };
             adornedElementBrush.BeginAnimation(System.Windows.Media.Brush.OpacityProperty, animation);
-
-            child.Fill = adornedElementBrush;
         }
 
         // A common way to implement an adorner's rendering behavior is to override the OnRender
@@ -47,6 +45,13 @@ namespace TeaDriven.StarrySky
         }
     }
 
+    public class InvisibleDragAndDropAdorner : DragAndDropAdornerBase
+    {
+        public InvisibleDragAndDropAdorner(UIElement adornedElement) : base(adornedElement)
+        {
+        }
+    }
+
     public abstract class DragAndDropAdornerBase : Adorner
     {
         protected readonly VisualBrush adornedElementBrush;
@@ -59,7 +64,8 @@ namespace TeaDriven.StarrySky
             child = new Rectangle
             {
                 Width = adornedElement.RenderSize.Width,
-                Height = adornedElement.RenderSize.Height
+                Height = adornedElement.RenderSize.Height,
+                Fill = adornedElementBrush
             };
         }
 
