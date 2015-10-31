@@ -83,17 +83,17 @@ namespace TeaDriven.StarrySky
 
             dragStartOffset = VisualTreeHelper.GetOffset(originalElement);
 
-            adornerElement = new SimpleCircleAdorner(originalElement);
+            adornerElement = this.CreateAdorner(originalElement);
             AdornerLayer layer = AdornerLayer.GetAdornerLayer(originalElement);
             layer.Add(adornerElement);
         }
 
         private void DragMoved()
         {
-            Point CurrentPosition = Mouse.GetPosition(ItemsPanel);
+            Point currentPosition = Mouse.GetPosition(ItemsPanel);
 
-            adornerElement.LeftOffset = CurrentPosition.X - startPoint.X;
-            adornerElement.TopOffset = CurrentPosition.Y - startPoint.Y;
+            adornerElement.LeftOffset = currentPosition.X - startPoint.X;
+            adornerElement.TopOffset = currentPosition.Y - startPoint.Y;
         }
 
         private void DragFinished(bool cancelled)
@@ -115,6 +115,19 @@ namespace TeaDriven.StarrySky
         }
 
         #endregion Drag and drop implementation
+
+        #region Public properties
+
+        public Func<UIElement, SimpleCircleAdorner> createAdorner =
+            (control) => new SimpleCircleAdorner(control);
+
+        public Func<UIElement, SimpleCircleAdorner> CreateAdorner
+        {
+            get { return createAdorner; }
+            set { createAdorner = value; }
+        }
+
+        #endregion Public properties
 
         #region Auxiliary code
 
