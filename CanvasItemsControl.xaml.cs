@@ -28,6 +28,8 @@ namespace TeaDriven.StarrySky
         public CanvasItemsControl()
         {
             InitializeComponent();
+
+            this.CreateAdorner = (control) => new InvisibleDragAndDropAdorner(control);
         }
 
         #endregion Constructors
@@ -118,14 +120,17 @@ namespace TeaDriven.StarrySky
 
         #region Public properties
 
-        public Func<UIElement, DragAndDropAdornerBase> createAdorner =
-            (control) => new InvisibleDragAndDropAdorner(control);
-
         public Func<UIElement, DragAndDropAdornerBase> CreateAdorner
         {
-            get { return createAdorner; }
-            set { createAdorner = value; }
+            get { return (Func<UIElement, DragAndDropAdornerBase>)GetValue(CreateAdornerProperty); }
+            set { SetValue(CreateAdornerProperty, value); }
         }
+
+        public static readonly DependencyProperty CreateAdornerProperty =
+            DependencyProperty.Register("CreateAdorner",
+                                        typeof(Func<UIElement, DragAndDropAdornerBase>),
+                                        typeof(CanvasItemsControl),
+                                        new UIPropertyMetadata(null));
 
         #endregion Public properties
 

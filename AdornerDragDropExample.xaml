@@ -49,7 +49,8 @@
         <starrySky:CanvasItemsControl ItemsSource="{Binding MainItems}"
                                       x:Name="StarrySky"
                                       VerticalAlignment="Stretch"
-                                      Background="DarkRed">
+                                      Background="DarkRed"
+                                      CreateAdorner="{Binding CreateAdorner}">
             <starrySky:CanvasItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
