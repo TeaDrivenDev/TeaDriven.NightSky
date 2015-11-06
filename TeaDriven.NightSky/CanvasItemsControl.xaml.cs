@@ -38,12 +38,12 @@ namespace TeaDriven.NightSky
 
         private void ItemsPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.Source != ItemsPanel)
+            if (e.Source != ItemsPanelControl)
             {
                 mouseDown = true;
                 startPoint = GetRelativeEventPosition(e);
-                originalElement = GetParent<ContentPresenter>(e.Source as UIElement, ItemsPanel) as UIElement;
-                ItemsPanel.CaptureMouse();
+                originalElement = GetParent<ContentPresenter>(e.Source as UIElement, ItemsPanelControl) as UIElement;
+                ItemsPanelControl.CaptureMouse();
                 e.Handled = true;
             }
         }
@@ -92,7 +92,7 @@ namespace TeaDriven.NightSky
 
         private void DragMoved()
         {
-            Point currentPosition = Mouse.GetPosition(ItemsPanel);
+            Point currentPosition = Mouse.GetPosition(ItemsPanelControl);
 
             adornerElement.LeftOffset = currentPosition.X - startPoint.X;
             adornerElement.TopOffset = currentPosition.Y - startPoint.Y;
@@ -136,11 +136,14 @@ namespace TeaDriven.NightSky
 
         #region Auxiliary code
 
-        private Canvas ItemsPanel => FindItemsPanel(this);
+        private Canvas ItemsPanelControl
+        {
+            get { return FindItemsPanel(this); }
+        }
 
         private Point GetRelativeEventPosition(MouseEventArgs e)
         {
-            return e.GetPosition(ItemsPanel);
+            return e.GetPosition(ItemsPanelControl);
         }
 
         // https://snipt.net/raw/9444c2cebe488c6f1bb5730caf6b5a1f/?nice

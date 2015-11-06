@@ -70,7 +70,10 @@ namespace TeaDriven.NightSky
         private void UpdatePosition()
         {
             AdornerLayer adornerLayer = this.Parent as AdornerLayer;
-            adornerLayer?.Update(AdornedElement);
+            if (adornerLayer != null)
+            {
+                adornerLayer.Update(AdornedElement);
+            }
         }
 
         public override sealed GeneralTransform GetDesiredTransform(GeneralTransform transform)

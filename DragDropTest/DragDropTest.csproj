@@ -3,7 +3,7 @@
   <!-- MSBUILD Project File -->
   <PropertyGroup>
     <DefaultClrNameSpace>SDKSamples</DefaultClrNameSpace>
-    <AssemblyName>DragDrop</AssemblyName>
+    <AssemblyName>DragDropTest</AssemblyName>
     <TargetType>winexe</TargetType>
     <Configuration>Release</Configuration>
     <BuildSystem>MSBuild</BuildSystem>
@@ -40,7 +40,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>TeaDriven.NightSky</RootNamespace>
+    <RootNamespace>DragDropTest</RootNamespace>
   </PropertyGroup>
   <!--Import the target file that contains all the common targets -->
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -53,17 +53,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CanvasItemsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CanvasItemsControl.xaml.cs">
-      <DependentUpon>CanvasItemsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DragAndDropAdornerBase.cs" />
-    <Compile Include="InvisibleDragAndDropAdorner.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -72,7 +63,6 @@
       <DependentUpon>AdornerDragDropExample.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CappedRectangleAdorner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -94,5 +84,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TeaDriven.NightSky\TeaDriven.NightSky.csproj">
+      <Project>{3968dfd7-ff37-491d-bd0c-abccacec73f0}</Project>
+      <Name>TeaDriven.NightSky</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
