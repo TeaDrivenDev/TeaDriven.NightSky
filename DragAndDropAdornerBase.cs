@@ -3,7 +3,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace TeaDriven.StarrySky
+namespace TeaDriven.NightSky
 {
     public abstract class DragAndDropAdornerBase : Adorner
     {

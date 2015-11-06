@@ -40,12 +40,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>TeaDriven.StarrySky</RootNamespace>
+    <RootNamespace>TeaDriven.NightSky</RootNamespace>
   </PropertyGroup>
   <!--Import the target file that contains all the common targets -->
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ApplicationDefinition Include="MyApp.xaml">
+    <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
@@ -64,8 +64,8 @@
     </Compile>
     <Compile Include="DragAndDropAdornerBase.cs" />
     <Compile Include="InvisibleDragAndDropAdorner.cs" />
-    <Compile Include="MyApp.xaml.cs">
-      <DependentUpon>MyApp.xaml</DependentUpon>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AdornerDragDropExample.xaml.cs">

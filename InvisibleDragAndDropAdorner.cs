@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace TeaDriven.StarrySky
+namespace TeaDriven.NightSky
 {
     public class InvisibleDragAndDropAdorner : DragAndDropAdornerBase
     {

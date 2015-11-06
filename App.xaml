@@ -1,8 +1,8 @@
 
 <Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  x:Class="TeaDriven.StarrySky.MyApp"
-  xmlns:my="clr-namespace:TeaDriven.StarrySky"
+  x:Class="TeaDriven.NightSky.MyApp"
+  xmlns:my="clr-namespace:TeaDriven.NightSky"
   xmlns:SampleControls="SampleControls"
   StartupUri="AdornerDragDropExample.xaml">
 </Application>

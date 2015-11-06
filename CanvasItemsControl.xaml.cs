@@ -5,7 +5,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace TeaDriven.StarrySky
+namespace TeaDriven.NightSky
 {
     // https://msdn.microsoft.com/en-us/library/vstudio/bb295243%28v=vs.90%29.aspx
     public partial class CanvasItemsControl

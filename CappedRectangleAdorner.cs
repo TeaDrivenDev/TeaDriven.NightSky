@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace TeaDriven.StarrySky
+namespace TeaDriven.NightSky
 {
     public class CappedRectangleAdorner : DragAndDropAdornerBase
     {

@@ -6,14 +6,13 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.IO;
 
-namespace TeaDriven.StarrySky
+namespace TeaDriven.NightSky
 {
-	/// <summary>
-	/// Interaction logic for app.xaml
-	/// </summary>
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
 
-	public partial class app : Application
-	{
-
-	}
+    public partial class App : Application
+    {
+    }
 }
