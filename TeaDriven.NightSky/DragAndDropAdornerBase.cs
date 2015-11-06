@@ -39,7 +39,10 @@ namespace TeaDriven.NightSky
             return child;
         }
 
-        protected override sealed int VisualChildrenCount => 1;
+        protected override sealed int VisualChildrenCount
+        {
+            get { return 1; }
+        }
 
         public double LeftOffset
         {
@@ -47,6 +50,7 @@ namespace TeaDriven.NightSky
             {
                 return leftOffset;
             }
+
             set
             {
                 leftOffset = value;
@@ -60,6 +64,7 @@ namespace TeaDriven.NightSky
             {
                 return topOffset;
             }
+
             set
             {
                 topOffset = value;

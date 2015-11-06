@@ -1,25 +1,12 @@
-// This sample shows how to drag and drop objects on the screen.
-// To visually indicate that the object is being dragged, a simple adorner
-// is applied to an object as you drag it.
-
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows.Input;
+using System.Linq;
+using System.Windows;
+using TeaDriven.NightSky;
 
-namespace TeaDriven.NightSky
+namespace DragDropTest
 {
-    #region Namespaces.
-
-    using System;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Documents;
-    using System.Windows.Media;
-    using System.Windows.Threading;
-
-    #endregion Namespaces.
-
     // https://msdn.microsoft.com/en-us/library/vstudio/bb295243%28v=vs.90%29.aspx
     public partial class AdornerDragDropExample
     {
@@ -60,7 +47,10 @@ namespace TeaDriven.NightSky
             PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
-        public Func<UIElement, DragAndDropAdornerBase> CreateAdorner => control => new CappedRectangleAdorner(control);
+        public Func<UIElement, DragAndDropAdornerBase> CreateAdorner
+        {
+            get { return control => new CappedRectangleAdorner(control); }
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
