@@ -1,13 +1,15 @@
+using System;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace TeaDriven.NightSky
 {
     public abstract class DragAndDropAdornerBase : Adorner
     {
-        protected readonly VisualBrush adornedElementBrush;
+        protected readonly Brush adornedElementBrush;
 
         // Be sure to call the base class constructor.
         protected DragAndDropAdornerBase(UIElement adornedElement)
@@ -18,7 +20,7 @@ namespace TeaDriven.NightSky
             {
                 Width = adornedElement.RenderSize.Width,
                 Height = adornedElement.RenderSize.Height,
-                Fill = adornedElementBrush
+                Fill = CreateImageBrush(adornedElement as FrameworkElement)
             };
         }
 
@@ -92,5 +94,22 @@ namespace TeaDriven.NightSky
         protected Rectangle child;
         private double leftOffset;
         private double topOffset;
+
+        // http://elegantcode.com/2010/12/09/wpf-copy-uielement-as-image-to-clipboard/
+        public static Brush CreateImageBrush(FrameworkElement element)
+        {
+            double width = element.ActualWidth;
+            double height = element.ActualHeight;
+            RenderTargetBitmap bmpCopied = new RenderTargetBitmap((int)Math.Round(width), (int)Math.Round(height), 96, 96, PixelFormats.Default);
+            DrawingVisual dv = new DrawingVisual();
+            using (DrawingContext dc = dv.RenderOpen())
+            {
+                VisualBrush vb = new VisualBrush(element);
+                dc.DrawRectangle(vb, null, new Rect(new Point(), new Size(width, height)));
+            }
+            bmpCopied.Render(dv);
+
+            return new ImageBrush(bmpCopied);
+        }
     }
 }

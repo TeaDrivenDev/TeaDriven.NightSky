@@ -88,6 +88,11 @@ namespace TeaDriven.NightSky
             adornerElement = this.CreateAdorner(originalElement);
             AdornerLayer layer = AdornerLayer.GetAdornerLayer(originalElement);
             layer.Add(adornerElement);
+
+            if (!ShowWhileDragging)
+            {
+                originalElement.Visibility = Visibility.Hidden;
+            }
         }
 
         private void DragMoved()
@@ -114,11 +119,23 @@ namespace TeaDriven.NightSky
             }
             mouseDragging = false;
             mouseDown = false;
+
+            if (!ShowWhileDragging)
+            {
+                originalElement.Visibility = Visibility.Visible;
+            }
         }
 
         #endregion Drag and drop implementation
 
         #region Public properties
+
+        public static readonly DependencyProperty CreateAdornerProperty =
+            DependencyProperty.Register(
+                "CreateAdorner",
+                typeof(Func<UIElement, DragAndDropAdornerBase>),
+                typeof(CanvasItemsControl),
+                new UIPropertyMetadata(null));
 
         public Func<UIElement, DragAndDropAdornerBase> CreateAdorner
         {
@@ -126,11 +143,18 @@ namespace TeaDriven.NightSky
             set { SetValue(CreateAdornerProperty, value); }
         }
 
-        public static readonly DependencyProperty CreateAdornerProperty =
-            DependencyProperty.Register("CreateAdorner",
-                                        typeof(Func<UIElement, DragAndDropAdornerBase>),
-                                        typeof(CanvasItemsControl),
-                                        new UIPropertyMetadata(null));
+        public static readonly DependencyProperty ShowWhileDraggingProperty =
+            DependencyProperty.Register(
+                "ShowWhileDragging",
+                typeof(bool),
+                typeof(CanvasItemsControl),
+                new UIPropertyMetadata(false));
+
+        public bool ShowWhileDragging
+        {
+            get { return (bool)GetValue(ShowWhileDraggingProperty); }
+            set { SetValue(ShowWhileDraggingProperty, value); }
+        }
 
         #endregion Public properties
 

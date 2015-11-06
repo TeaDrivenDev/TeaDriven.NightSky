@@ -6,11 +6,10 @@
         Loaded="OnPageLoad"
         Width="1200"
         Height="700">
-    <StackPanel Background="LimeGreen">
+    <StackPanel Background="Aqua">
         <nightSky:CanvasItemsControl ItemsSource="{Binding MainItems}"
                                      x:Name="StarrySky"
-                                     VerticalAlignment="Stretch"
-                                     CreateAdorner="{Binding CreateAdorner}">
+                                     VerticalAlignment="Stretch">
             <nightSky:CanvasItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
